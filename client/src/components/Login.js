@@ -55,7 +55,7 @@ function Login() {
             </div>
             <button
               type="submit"
-              className="w-full py-2 mt-3 text-lg px-4 rounded-lg bg-red-800 text-white font-bold hover:bg-red-900"
+              className="w-full py-2 mt-3 text-lg px-4 rounded-lg bg-red-800 text-white hover:bg-red-900"
             >
               Login
             </button>
