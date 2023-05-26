@@ -2,9 +2,9 @@ import React from "react";
 
 function Login() {
   return (
-    <div className="flex font-outfit">
-      <div className="w-1/2 bg-gradient-to-r from-orange-700 to-red-800 h-screen"></div>
-      <div className="w-1/2 h-screen bg-purple-100">
+    <div className="font-outfit flex items-center justify-center h-2/3 bg-purple-100">
+      <div className="sm:block hidden w-1/2 bg-gradient-to-r from-orange-700 to-red-800 h-screen"></div>
+      <div className="sm:w-1/2 h-screen">
         <div className="flex items-center justify-center h-2/3">
           <form className="w-96 p-10 pt-52">
             <h1 className="text-5xl text-left font-bold ">Chat Room</h1>
