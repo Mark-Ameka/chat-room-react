@@ -5,9 +5,9 @@ function Login() {
     <div className="font-outfit flex items-center justify-center h-2/3 bg-purple-100">
       <div className="sm:block hidden w-1/2 bg-gradient-to-r from-orange-700 to-red-800 h-screen"></div>
       <div className="sm:w-1/2 h-screen">
-        <div className="flex items-center justify-center h-2/3">
-          <form className="w-96 p-10 pt-52">
-            <h1 className="text-5xl text-left font-bold ">Chat Room</h1>
+        <div className="grid items-center justify-center h-2/3">
+          <form className="w-96 p-10 py-24 pb-8">
+            <h1 className="text-5xl text-left font-bold">Chat Room</h1>
             <p className="text-lg text-left mb-9">Place where people meet</p>
             <div className="relative">
               <svg
@@ -59,7 +59,20 @@ function Login() {
             >
               Login
             </button>
+            <div className="mt-7 mb-0 grid grid-cols-3 items-center text-gray-400">
+              <hr className="border-gray-400" />
+              <p className="text-center">or</p>
+              <hr className="border-gray-400" />
+            </div>
           </form>
+          <div className="w-96 px-10 py-0">
+            <button
+              type="button"
+              className="w-full py-2 text-lg rounded-lg bg-slate-500 text-white hover:bg-slate-600"
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
       </div>
     </div>
