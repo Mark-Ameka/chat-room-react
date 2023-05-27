@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <h1>Join Room</h1>
+    <ul id="list">
+      
+    </ul>
+    <script>
+      async function getRooms() {
+        const data = await fetch('http://localhost:5000/rooms')
+        const rooms = await data.json()
+        return rooms
+      }
+
+      async function renderRooms() {
+        const ul = document.querySelector("#list")
+        const rooms = await getRooms()
+
+        for (let room of rooms) {
+          const li = document.createElement('li')
+          const anchor = document.createElement('a')
+          anchor.href = `http://localhost:5000/rooms/${room}`
+          anchor.textContent = room
+          li.appendChild(anchor)
+          ul.appendChild(li)
+        }
+      }
+      renderRooms()
+    </script>
+  </body>
+</html>
