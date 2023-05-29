@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         outfit: ["Outfit", "sans-serif"],
+        sans: ["Open Sans", "sans-serif"],
       },
     },
   },
