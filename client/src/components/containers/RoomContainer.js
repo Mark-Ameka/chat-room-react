@@ -1,9 +1,11 @@
 import React from "react";
+import SearchBarContainer from "./SearchBarContainer";
 
 function Room() {
   return (
     <div className="max-w-md mx-auto px-3 py-3 space-y-1">
       <p className="font-semibold text-lg text-start pb-2">Your Rooms</p>
+      <SearchBarContainer />
       {/* Container */}
       <div className="w-full bg-gray-200 hover:bg-gray-300 py-2 px-2 cursor-pointer rounded-lg">
         <div class="flex items-start">
@@ -17,7 +19,7 @@ function Room() {
           </div>
           {/* NAME AND MESSAGE */}
           <div class="pl-3 text-start">
-            <p class="font-semibold">Room 1</p>
+            <p class="">Room 1</p>
             <p class="text-gray-600 text-sm pt-0 sm:line-clamp-1">
               <span>John Doe: </span>
               Imung mama{" "}
@@ -40,7 +42,7 @@ function Room() {
           </div>
           {/* NAME AND MESSAGE */}
           <div class="pl-3 text-start">
-            <p class="font-semibold">Room 2</p>
+            <p class="">Room 2</p>
             <p class="text-gray-600 text-sm pt-0 sm:line-clamp-1">
               <span>Stacy Cruz: </span>
               Hello <span class="text-xs text-gray-500 pl-1">10:05 AM</span>
@@ -62,7 +64,7 @@ function Room() {
           </div>
           {/* NAME AND MESSAGE */}
           <div class="pl-3 text-start">
-            <p class="font-bold">Room 2</p>
+            <p class="font-semibold text-gray-950">Room 2</p>
             <p class="text-gray-950 text-sm pt-0 font-semibold sm:line-clamp-1">
               <span>Stacy Cruz: </span>
               Hello <span class="text-xs  pl-1">10:05 AM</span>
