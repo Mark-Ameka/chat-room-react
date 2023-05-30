@@ -51,7 +51,7 @@ function Room() {
         </div>
       </div>
 
-      {/* NOT ACTIVE */}
+      {/* NEW */}
       <div className="w-full hover:bg-gray-300 py-2 px-2 cursor-pointer rounded-md">
         <div className="flex items-start">
           <div className="flex-shrink-0">

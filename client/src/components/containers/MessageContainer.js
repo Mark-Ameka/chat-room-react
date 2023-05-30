@@ -15,7 +15,7 @@ function MessageContainer() {
           </div>
         </div>
       </div>
-      <div className="overflow-auto max-custom">
+      <div className="overflow-auto max-custom scroll-smooth">
         <div className="flex-grow flex flex-col-reverse mb-4">
           <div className="px-6 rounded-b-lg">
             <div className="flex flex-col space-y-4">
