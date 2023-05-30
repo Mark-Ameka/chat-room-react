@@ -26,8 +26,7 @@ function MessageContainer() {
                     alt="Receiver Avatar"
                     className="w-9 h-9 rounded-full mr-2"
                   />
-                  <div className="bg-gray-200 text-black rounded-xl rounded-bl-sm p-2 text-start">
-                    <p>Hoy</p>
+                  <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
                     <p>Hoy</p>
                     <p>
                       Suspendisse potenti. Aliquam cursus est eu imperdiet
@@ -45,7 +44,7 @@ function MessageContainer() {
               </div>
               <div className="flex items-end justify-end">
                 <div className="flex items-end">
-                  <div className="bg-red-600 text-white rounded-xl rounded-br-sm p-2 text-end">
+                  <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
                     <p>Unsa man</p>
                     <p>
                       Etiam tempus ante sed luctus viverra. Morbi sed lectus sit
@@ -61,42 +60,6 @@ function MessageContainer() {
                     alt="Receiver Avatar"
                     className="w-9 h-9 rounded-full ml-2"
                   />
-                </div>
-              </div>
-              <div className="flex items-start">
-                <div className="flex items-end">
-                  <img
-                    src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
-                    alt="Receiver Avatar"
-                    className="w-9 h-9 rounded-full mr-2"
-                  />
-                  <div className="bg-gray-200 text-black rounded-xl rounded-bl-sm p-2">
-                    <p>Kiss ko bi</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <div className="flex items-end">
-                  <img
-                    src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
-                    alt="Receiver Avatar"
-                    className="w-9 h-9 rounded-full mr-2"
-                  />
-                  <div className="bg-gray-200 text-black rounded-xl rounded-bl-sm p-2">
-                    <p>Kiss ko bi</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <div className="flex items-end">
-                  <img
-                    src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
-                    alt="Receiver Avatar"
-                    className="w-9 h-9 rounded-full mr-2"
-                  />
-                  <div className="bg-gray-200 text-black rounded-xl rounded-bl-sm p-2">
-                    <p>Kiss ko bi</p>
-                  </div>
                 </div>
               </div>
             </div>
