@@ -103,7 +103,7 @@ function MessageContainer() {
           </div>
         </div>
       </div>
-      <div className="bg-white sticky rounded-full flex py-4 px-6">
+      <div className="bg-white sticky rounded-full flex mb-3 px-6">
         <input
           type="text"
           placeholder="Aa"
