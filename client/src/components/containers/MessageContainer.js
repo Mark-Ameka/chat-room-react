@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 function MessageContainer() {
+  const scrolly = useRef(null);
+
+  useEffect(() => {
+    const scroll_bottom = scrolly.current;
+    scroll_bottom.scrollTop = scroll_bottom.scrollHeight;
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow">
@@ -15,8 +22,8 @@ function MessageContainer() {
           </div>
         </div>
       </div>
-      <div className="overflow-auto max-custom scroll-smooth">
-        <div className="flex-grow flex flex-col-reverse mb-4">
+      <div className="overflow-auto max-custom scroll-smooth" ref={scrolly}>
+        <div className="flex-grow flex flex-col-reverse mb-4 mt-4">
           <div className="px-6 rounded-b-lg">
             <div className="flex flex-col space-y-4">
               <div className="flex items-start">
@@ -26,34 +33,41 @@ function MessageContainer() {
                     alt="Receiver Avatar"
                     className="w-9 h-9 rounded-full mr-2"
                   />
-                  <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
-                    <p>Hoy</p>
-                    <p>
-                      Suspendisse potenti. Aliquam cursus est eu imperdiet
-                      eleifend. Aliquam semper, elit et ullamcorper fermentum,
-                      nunc dui auctor nibh, et cursus nibh nisi feugiat dolor.
-                      Maecenas velit libero, sollicitudin sit amet pulvinar eu,
-                      feugiat non lorem. Phasellus dignissim ante ut tortor
-                      pharetra elementum. Vivamus fermentum mollis eros nec
-                      condimentum. Quisque venenatis dolor et magna venenatis
-                      porttitor. Nullam bibendum odio ac lorem elementum, ut
-                      iaculis turpis pretium. Quisque blandit varius ipsum.
-                    </p>
+                  <div className="grid grid-flow-row">
+                    <span className="text-start text-xs mb-1">10:20AM</span>
+                    <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
+                      <p>Hoy</p>
+                      <p>
+                        Suspendisse potenti. Aliquam cursus est eu imperdiet
+                        eleifend. Aliquam semper, elit et ullamcorper fermentum,
+                        nunc dui auctor nibh, et cursus nibh nisi feugiat dolor.
+                        Maecenas velit libero, sollicitudin sit amet pulvinar
+                        eu, feugiat non lorem. Phasellus dignissim ante ut
+                        tortor pharetra elementum. Vivamus fermentum mollis eros
+                        nec condimentum. Quisque venenatis dolor et magna
+                        venenatis porttitor. Nullam bibendum odio ac lorem
+                        elementum, ut iaculis turpis pretium. Quisque blandit
+                        varius ipsum.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="flex items-end justify-end">
                 <div className="flex items-end">
-                  <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
-                    <p>Unsa man</p>
-                    <p>
-                      Etiam tempus ante sed luctus viverra. Morbi sed lectus sit
-                      amet mi commodo vehicula. Orci varius natoque penatibus et
-                      magnis dis parturient montes, nascetur ridiculus mus.
-                      Curabitur nec mauris quis ex suscipit commodo. Nullam
-                      mattis volutpat ex, vel molestie ante. Ut sed dictum
-                      mauris.
-                    </p>
+                  <div className="grid grid-flow-row">
+                    <span className="text-end text-xs mb-1">10:20AM</span>
+                    <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
+                      <p>Unsa man</p>
+                      <p>
+                        Etiam tempus ante sed luctus viverra. Morbi sed lectus
+                        sit amet mi commodo vehicula. Orci varius natoque
+                        penatibus et magnis dis parturient montes, nascetur
+                        ridiculus mus. Curabitur nec mauris quis ex suscipit
+                        commodo. Nullam mattis volutpat ex, vel molestie ante.
+                        Ut sed dictum mauris.
+                      </p>
+                    </div>
                   </div>
                   <img
                     src="https://xsgames.co/randomusers/assets/avatars/male/63.jpg"
@@ -62,11 +76,38 @@ function MessageContainer() {
                   />
                 </div>
               </div>
+              <div className="flex items-start">
+                <div className="flex items-end">
+                  <img
+                    src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
+                    alt="Receiver Avatar"
+                    className="w-9 h-9 rounded-full mr-2"
+                  />
+                  <div className="grid grid-flow-row">
+                    <span className="text-start text-xs mb-1">10:20AM</span>
+                    <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
+                      <p>Hoy</p>
+                      <p>
+                        Suspendisse potenti. Aliquam cursus est eu imperdiet
+                        eleifend. Aliquam semper, elit et ullamcorper fermentum,
+                        nunc dui auctor nibh, et cursus nibh nisi feugiat dolor.
+                        Maecenas velit libero, sollicitudin sit amet pulvinar
+                        eu, feugiat non lorem. Phasellus dignissim ante ut
+                        tortor pharetra elementum. Vivamus fermentum mollis eros
+                        nec condimentum. Quisque venenatis dolor et magna
+                        venenatis porttitor. Nullam bibendum odio ac lorem
+                        elementum, ut iaculis turpis pretium. Quisque blandit
+                        varius ipsum.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-white sticky rounded-full flex mb-3 px-6">
+      <div className="sticky rounded-full flex mb-3 px-6">
         <input
           type="text"
           placeholder="Aa"
