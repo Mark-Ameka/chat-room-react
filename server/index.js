@@ -8,6 +8,7 @@ const http = require('http')
 const app = express()
 const server = http.createServer(app)
 const { Server } = require('socket.io')
+const { deserializeUser } = require('./middlewares/auth')
 const io = new Server(server)
 const ROOMS = ['germany', 'italy', 'japan']
 
@@ -18,9 +19,13 @@ mongoose
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
+app.use(deserializeUser)
 
 // testing routes
-app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'));
+app.get('/', (req, res) => {
+    console.log('req.user', req.user)
+    res.sendFile(__dirname + '/views/index.html')
+});
 app.get('/rooms', (req, res) => res.json(ROOMS))
 app.get('/rooms/:room', (req, res) => res.sendFile(__dirname + '/views/room.html'))
 
@@ -42,13 +47,11 @@ io.on('connection', socket => {
         io.to(room).emit('room-messages', msg)
     })
 
-
     socket.on('disconnect', () => {
         connectedUsers.delete(socket.id)
         io.emit('user-list', Array.from(connectedUsers))
     })
 })
-
 
 app.use(errorHandler)
 
