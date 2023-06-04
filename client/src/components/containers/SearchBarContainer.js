@@ -11,9 +11,9 @@ function SearchBar() {
         viewBox="0 0 24 24"
         fill="none"
         stroke="#000000"
-        stroke-width="1.5"
-        stroke-linecap="butt"
-        stroke-linejoin="bevel"
+        strokeWidth="1.5"
+        strokeLinecap="butt"
+        strokeLinejoin="bevel"
       >
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>

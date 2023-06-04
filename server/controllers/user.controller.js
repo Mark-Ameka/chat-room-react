@@ -1,6 +1,6 @@
 const UserModel = require('../models/user.model')
 const { generateToken } = require('../utils/jwt')
-// TODO -> form validation
+
 async function createUser(req, res, next) {
     try {
         const { name, email, password } = req.body;
@@ -10,7 +10,9 @@ async function createUser(req, res, next) {
             throw new Error('Email already in use')
         }
         const user = await UserModel.create({ name, email, password})
-        return res.status(201).send(user)
+
+        const token = generateToken(user)
+        return res.status(201).send({ token })
     } catch (error) {
         next(error)
     }
@@ -32,7 +34,6 @@ async function login(req, res, next) {
         }   
 
         const token = generateToken(user)
-
         return res.send({ token })
 
     } catch (error) {
@@ -40,7 +41,13 @@ async function login(req, res, next) {
     }
 }
 
+async function getUser(req, res, next) {
+    return res.send({ user: req.user })
+}
+
+
 module.exports = {
     createUser,
-    login
+    login,
+    getUser
 }

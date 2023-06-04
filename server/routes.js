@@ -1,9 +1,11 @@
 const { Router } = require('express')
-const { createUser, login } = require('./controllers/user.controller')
+const { createUser, login, getUser } = require('./controllers/user.controller')
 const { requireAuth } = require('./middlewares/auth')
 const router = Router()
 
 router.get('/', (req, res) => res.sendStatus(200))
+
+router.get('/users', requireAuth, getUser)
 router.post('/users', createUser)
 router.post('/users/login', login)
 

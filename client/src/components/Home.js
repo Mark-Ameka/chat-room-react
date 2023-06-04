@@ -3,8 +3,14 @@ import RoomContainer from "./containers/RoomContainer";
 import UserContainer from "./containers/UserContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import MessageContainer from "./containers/MessageContainer";
+import {useUser} from '../hooks/useUser'
+
 
 function Home() {
+  const { data: user } = useUser() 
+  console.log('user', user)
+
+
   return (
     <div className="grid md:grid-cols-4 grid-cols-1 h-screen bg-white font-outfit">
       <div className="md:block hidden col-span-1">
