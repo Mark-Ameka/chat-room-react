@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const cors = require('cors')
 dotenv.config()
 const router = require('./routes')
 const errorHandler = require('./middlewares/errorHandler')
@@ -17,6 +18,12 @@ mongoose
     .then(() => console.log('connected to db'))
     .catch(err => console.log(err.message))
 
+app.use(
+    cors({
+        origin: process.env.ORIGIN,
+        credentials: true,
+    })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
 app.use(deserializeUser)

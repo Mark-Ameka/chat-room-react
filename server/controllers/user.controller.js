@@ -33,12 +33,7 @@ async function login(req, res, next) {
 
         const token = generateToken(user)
 
-        return res.send({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token
-        })
+        return res.send({ token })
 
     } catch (error) {
         next(error)
