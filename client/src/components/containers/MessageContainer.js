@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import { useChat } from "../../contexts/ChatContext";
 
 function MessageContainer() {
+
+  const { selectedRoom } = useChat();
+
   const scrolly = useRef(null);
 
   useEffect(() => {
@@ -18,7 +22,7 @@ function MessageContainer() {
               alt="User 3"
               className="w-12 h-12 rounded-full"
             />
-            <span className="ml-3 text-xl font-semibold">Room 1</span>
+            <span className="ml-3 text-xl font-semibold">{selectedRoom}</span>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import api from '../utils/axiosInstance'
 
 const queryFn = async () => {
     const res = await api.get('/users')
-    return res.data
+    return res.data.user
 }
 
 export const useUser = (config) => {
