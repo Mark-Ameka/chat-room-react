@@ -3,14 +3,13 @@ import { useChat } from "../../contexts/ChatContext";
 
 function UserContainer() {
   const { userList } = useChat()
-  console.log('userList', userList)
   return (
     <div className="max-w-md px-2 py-3 space-y-1">
       <p className="font-semibold text-lg px-2 text-start pb-2">Users</p>
 
       {
         userList && userList.map(user => {
-          return <div className="flex items-center py-2 px-2 rounded-lg cursor-pointer hover:bg-gray-300">
+          return <div className="flex items-center py-2 px-2 rounded-lg cursor-pointer hover:bg-gray-300" key={user}>
             <img
               src="https://xsgames.co/randomusers/assets/avatars/male/77.jpg"
               alt="User 1"

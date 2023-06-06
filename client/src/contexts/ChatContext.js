@@ -18,8 +18,13 @@ export function ChatProvider({ children }) {
       setUserList(data.users);
     });
 
-    newSocket.on('message', (data) => {
-      setMessages((prevMessages) => [...prevMessages, data.message]);
+    newSocket.on('messages', (data) => {
+      setMessages((prev) => [...prev, {
+        message: data.message,
+        date: data.date,
+        sender: data.sender,
+        room: data.room
+      }])
     });
 
     setSocket(newSocket);
@@ -39,9 +44,9 @@ export function ChatProvider({ children }) {
     }
   };
 
-  const sendMessage = (message) => {
+  const sendMessage = (message, senderId) => {
     if (socket) {
-      socket.emit('message', { room: selectedRoom, message });
+      socket.emit('send-message', message, new Date(), senderId);
     }
   };
 

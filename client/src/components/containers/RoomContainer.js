@@ -7,7 +7,6 @@ function Room() {
   const { data: rooms } = useRooms() 
   const { joinRoom, selectedRoom } = useChat();
 
-  console.log('selectedRoom', selectedRoom)
   return (
     <div className="max-w-md mx-auto px-3 py-3 space-y-1">
       <p className="font-semibold text-lg text-start pb-2">Your Rooms</p>

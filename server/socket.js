@@ -1,5 +1,6 @@
 const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken')
+const User = require('./models/user.model')
 
 const setupSocket = (server) => {
   const io = new Server(server, {
@@ -22,28 +23,26 @@ const setupSocket = (server) => {
     next()
   })
 
-  // store userId instead of name
+  // TODO store userId instead of name
+  // TODO store data in db
+
   const roomUsersMap = new Map()
 
   io.on('connection', (socket) => {
-    console.log('new connection')
+
     socket.on('join-room', (newRoom, previousRoom) => {
-      console.log('join-room signal ', newRoom, previousRoom)
       socket.join(newRoom)
       socket.leave(previousRoom)
         
       if (previousRoom && roomUsersMap.has(previousRoom)) {
-        console.log(`leaving ${previousRoom} room`)
         roomUsersMap.get(previousRoom).delete(socket.user.name)
       }
       
       if (!roomUsersMap.has(newRoom)) {
-        console.log(`creating ${newRoom} room`)
         roomUsersMap.set(newRoom, new Set())
       }
       roomUsersMap.get(newRoom).add(socket.user.name)
       
-
       const usersInRoom = Array.from(roomUsersMap.get(newRoom))
 
       io.to(newRoom).emit('user-list', {
@@ -58,18 +57,17 @@ const setupSocket = (server) => {
         str += ']'
         console.log(str)
       }
-      // console.log(`Room: ${newRoom}, Users: [${usersInRoom}]`)
-
-
     });
 
-    // socket.on('room-messages', (msg) => {
-    //   const room = Array.from(socket.rooms)[1];
-    //   io.to(room).emit('room-messages', msg);
-    // });
+    // sender?
+    socket.on('send-message', async (message, date, senderId) => {
+      const room = Array.from(socket.rooms)[1];
+      // console.log({message, date, senderId, room})
+      const sender = await User.findById(senderId)
+      io.to(room).emit('messages', { message, date, sender, room });
+    });
 
     socket.on('disconnect', () => {
-      console.log('disconnect ')
       const rooms = Array.from(socket.rooms).slice(1)  
       for (const room of rooms) {
         if (roomUsersMap.has(room)) {
@@ -80,15 +78,9 @@ const setupSocket = (server) => {
           })
         }
       }
-
-
     });
 
-
-
   });
-
-
 };
 
 module.exports = setupSocket;

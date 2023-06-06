@@ -9,7 +9,6 @@ import { useChat } from "../contexts/ChatContext";
 
 function Home() {
   const { data: user } = useUser() 
-  console.log(user)
   const { socket, initializeSocket, selectedRoom } = useChat()
 
   useEffect(() => {

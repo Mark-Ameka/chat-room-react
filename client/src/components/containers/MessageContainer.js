@@ -1,11 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useChat } from "../../contexts/ChatContext";
+import { useUser } from "../../hooks/useUser";
 
 function MessageContainer() {
 
-  const { selectedRoom } = useChat();
-
+  const { selectedRoom, messages, sendMessage } = useChat();
+  const [message, setMessage] = useState('')
+  const {data: user} = useUser()
   const scrolly = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (message === '') return
+    sendMessage(message, user._id)
+    setMessage('');
+  }
 
   useEffect(() => {
     const scroll_bottom = scrolly.current;
@@ -30,7 +39,57 @@ function MessageContainer() {
         <div className="flex-grow flex flex-col-reverse mb-4 mt-4">
           <div className="px-6 rounded-b-lg">
             <div className="flex flex-col space-y-4">
-              <div className="flex items-start">
+
+              {
+                messages &&
+                messages.filter(x=> x.room === selectedRoom).map((x) => {
+                  const date = new Date(x.date);
+                  const formattedDate = date.toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    second: "numeric",
+                  });
+                  if (x.sender._id === user._id) {
+                    return <div className="flex items-end justify-end" key={x.date}>
+                    <div className="flex items-end">
+                      <div className="grid grid-flow-row">
+                        <span className="text-end text-xs mb-1">{formattedDate} {x.sender.name}</span>
+                        <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
+                          <p>{x.message}</p>
+                        </div>
+                      </div>
+                      <img
+                        src="https://xsgames.co/randomusers/assets/avatars/male/63.jpg"
+                        alt="Receiver Avatar"
+                        className="w-9 h-9 rounded-full ml-2"
+                      />
+                    </div>
+                  </div>
+                  } else {
+                    return <div className="flex items-start" key={x.date}>
+                    <div className="flex items-end">
+                      <img
+                        src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
+                        alt="Receiver Avatar"
+                        className="w-9 h-9 rounded-full mr-2"
+                      />
+                      <div className="grid grid-flow-row">
+                        <span className="text-start text-xs mb-1">{formattedDate} {x.sender.name}</span>
+                        <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
+                          <p>{x.message}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  }
+                })
+              }
+
+              {/* other user */}
+              {/* <div className="flex items-start">
                 <div className="flex items-end">
                   <img
                     src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
@@ -56,8 +115,10 @@ function MessageContainer() {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-end justify-end">
+              </div> */}
+
+              {/* me */}
+              {/* <div className="flex items-end justify-end">
                 <div className="flex items-end">
                   <div className="grid grid-flow-row">
                     <span className="text-end text-xs mb-1">10:20AM</span>
@@ -79,48 +140,25 @@ function MessageContainer() {
                     className="w-9 h-9 rounded-full ml-2"
                   />
                 </div>
-              </div>
-              <div className="flex items-start">
-                <div className="flex items-end">
-                  <img
-                    src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
-                    alt="Receiver Avatar"
-                    className="w-9 h-9 rounded-full mr-2"
-                  />
-                  <div className="grid grid-flow-row">
-                    <span className="text-start text-xs mb-1">10:20AM</span>
-                    <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
-                      <p>Hoy</p>
-                      <p>
-                        Suspendisse potenti. Aliquam cursus est eu imperdiet
-                        eleifend. Aliquam semper, elit et ullamcorper fermentum,
-                        nunc dui auctor nibh, et cursus nibh nisi feugiat dolor.
-                        Maecenas velit libero, sollicitudin sit amet pulvinar
-                        eu, feugiat non lorem. Phasellus dignissim ante ut
-                        tortor pharetra elementum. Vivamus fermentum mollis eros
-                        nec condimentum. Quisque venenatis dolor et magna
-                        venenatis porttitor. Nullam bibendum odio ac lorem
-                        elementum, ut iaculis turpis pretium. Quisque blandit
-                        varius ipsum.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div> */}
+
+
             </div>
           </div>
         </div>
       </div>
-      <div className="sticky rounded-full flex mb-3 px-6">
+      <form className="sticky rounded-full flex mb-3 px-6" onSubmit={handleSubmit}> 
         <input
           type="text"
           placeholder="Aa"
           className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:border-gray-400"
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
         />
         <button className="bg-red-600 text-white rounded-r-full px-4 py-2">
           Enter
         </button>
-      </div>
+      </form>
     </div>
   );
 }
