@@ -37,70 +37,75 @@ function MessageContainer() {
         </div>
       </div>
       <div className="overflow-auto max-custom">
-        <div className="flex-grow flex flex-col-reverse mb-4 mt-4">
-          <div className="px-6 rounded-b-lg">
-            <div className="flex flex-col space-y-4">
-              {messages &&
-                messages
-                  .filter((x) => x.room === selectedRoom)
-                  .map((x) => {
-                    const date = new Date(x.date);
-                    const formattedDate = date.toLocaleString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
-                      second: "numeric",
-                    });
-                    if (x.sender._id === user._id) {
-                      return (
-                        <div
-                          className="flex items-end justify-end"
-                          key={x.date}
-                        >
-                          <div className="flex items-end">
-                            <div className="grid grid-flow-row">
-                              <span className="text-end text-xs mb-1">
-                                {formattedDate} {x.sender.name}
-                              </span>
-                              <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
-                                <p>{x.message}</p>
+        {messages.length === 0 ? (
+          <div className="pb-7">
+            <p className="text-xl">No messages</p>
+          </div>
+        ) : (
+          <div className="flex-grow flex flex-col-reverse mb-4 mt-4">
+            <div className="px-6 rounded-b-lg">
+              <div className="flex flex-col space-y-4">
+                {messages &&
+                  messages
+                    .filter((x) => x.room === selectedRoom)
+                    .map((x) => {
+                      const date = new Date(x.date);
+                      const formattedDate = date.toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        second: "numeric",
+                      });
+                      if (x.sender._id === user._id) {
+                        return (
+                          <div
+                            className="flex items-end justify-end"
+                            key={x.date}
+                          >
+                            <div className="flex items-end">
+                              <div className="grid grid-flow-row">
+                                <span className="text-end text-xs mb-1">
+                                  {formattedDate} {x.sender.name}
+                                </span>
+                                <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
+                                  <p>{x.message}</p>
+                                </div>
                               </div>
-                            </div>
-                            <img
-                              src="https://xsgames.co/randomusers/assets/avatars/male/63.jpg"
-                              alt="Receiver Avatar"
-                              className="w-9 h-9 rounded-full ml-2"
-                            />
-                          </div>
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div className="flex items-start" key={x.date}>
-                          <div className="flex items-end">
-                            <img
-                              src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
-                              alt="Receiver Avatar"
-                              className="w-9 h-9 rounded-full mr-2"
-                            />
-                            <div className="grid grid-flow-row">
-                              <span className="text-start text-xs mb-1">
-                                {formattedDate} {x.sender.name}
-                              </span>
-                              <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
-                                <p>{x.message}</p>
-                              </div>
+                              <img
+                                src="https://xsgames.co/randomusers/assets/avatars/male/63.jpg"
+                                alt="Receiver Avatar"
+                                className="w-9 h-9 rounded-full ml-2"
+                              />
                             </div>
                           </div>
-                        </div>
-                      );
-                    }
-                  })}
+                        );
+                      } else {
+                        return (
+                          <div className="flex items-start" key={x.date}>
+                            <div className="flex items-end">
+                              <img
+                                src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
+                                alt="Receiver Avatar"
+                                className="w-9 h-9 rounded-full mr-2"
+                              />
+                              <div className="grid grid-flow-row">
+                                <span className="text-start text-xs mb-1">
+                                  {formattedDate} {x.sender.name}
+                                </span>
+                                <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
+                                  <p>{x.message}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
 
-              {/* other user */}
-              {/* <div className="flex items-start">
+                {/* other user */}
+                {/* <div className="flex items-start">
                 <div className="flex items-end">
                   <img
                     src="https://xsgames.co/randomusers/assets/avatars/female/31.jpg"
@@ -128,8 +133,8 @@ function MessageContainer() {
                 </div>
               </div> */}
 
-              {/* me */}
-              {/* <div className="flex items-end justify-end">
+                {/* me */}
+                {/* <div className="flex items-end justify-end">
                 <div className="flex items-end">
                   <div className="grid grid-flow-row">
                     <span className="text-end text-xs mb-1">10:20AM</span>
@@ -152,9 +157,10 @@ function MessageContainer() {
                   />
                 </div>
               </div> */}
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <div ref={scrolly}></div>
       </div>
       <form
