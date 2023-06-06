@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import MessageHeader from "./MessageHeader";
 import { useChat } from "../../contexts/ChatContext";
 import { useUser } from "../../hooks/useUser";
 
@@ -23,23 +24,12 @@ function MessageContainer() {
   useEffect(scrollToBottom, [messages]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-grow">
-        <div className="bg-white px-0 border-b-2 border-gray-100">
-          <div className="flex items-center px-6 py-4 rounded-lg">
-            <img
-              src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.6435-9/41620964_239664446680057_6433745118305452032_n.png?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=dZeRk0ecpQYAX_F_itD&_nc_ht=scontent.fmnl9-3.fna&oh=00_AfA9C0KXWBIJ0-msACOGfgQFmWIIXwOSZ6GxlZouUydeiA&oe=649BA8E7"
-              alt="User 3"
-              className="w-12 h-12 rounded-full"
-            />
-            <span className="ml-3 text-xl font-semibold">{selectedRoom}</span>
-          </div>
-        </div>
-      </div>
+    <div className="flex flex-col h-screen py-2">
+      <MessageHeader />
       <div className="overflow-auto max-custom">
         {messages.length === 0 ? (
-          <div className="pb-7">
-            <p className="text-xl">No messages</p>
+          <div className="pb-5">
+            <p className="text-lg text-gray-600">No messages</p>
           </div>
         ) : (
           <div className="flex-grow flex flex-col-reverse mb-4 mt-4">
@@ -50,13 +40,14 @@ function MessageContainer() {
                     .filter((x) => x.room === selectedRoom)
                     .map((x) => {
                       const date = new Date(x.date);
-                      const formattedDate = date.toLocaleString("en-US", {
+                      const formattedDate_date = date.toLocaleString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
+                      });
+                      const formattedDate_time = date.toLocaleString("en-US", {
                         hour: "numeric",
                         minute: "numeric",
-                        second: "numeric",
                       });
                       if (x.sender._id === user._id) {
                         return (
@@ -66,10 +57,28 @@ function MessageContainer() {
                           >
                             <div className="flex items-end">
                               <div className="grid grid-flow-row">
-                                <span className="text-end text-xs mb-1">
-                                  {formattedDate} {x.sender.name}
-                                </span>
-                                <div className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-11">
+                                <div className="text-end text-sm mb-1 text-gray-800">
+                                  <span>
+                                    {formattedDate_date} • {x.sender.name}
+                                  </span>
+                                </div>
+                                <div
+                                  className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-auto
+                                  relative 
+                                  before:content-[attr(data-tip)] 
+                                  before:absolute 
+                                  before:px-2 before:py-2
+                                  before:top-9 before:-left-9
+                                  before:-translate-x-1/2 before:-translate-y-full
+                                  before:bg-gray-700 before:text-white
+                                  before:rounded-md before:opacity-0
+                                  before:transition-all
+                                  before:text-end before:text-xs
+    
+                                  hover:before:opacity-100 hover:after:opacity-100
+                                "
+                                  data-tip={formattedDate_time}
+                                >
                                   <p>{x.message}</p>
                                 </div>
                               </div>
@@ -92,7 +101,7 @@ function MessageContainer() {
                               />
                               <div className="grid grid-flow-row">
                                 <span className="text-start text-xs mb-1">
-                                  {formattedDate} {x.sender.name}
+                                  {formattedDate_date} {x.sender.name}
                                 </span>
                                 <div className="bg-gray-200 text-black rounded-2xl rounded-bl-sm p-2 text-start mr-11">
                                   <p>{x.message}</p>
@@ -174,8 +183,23 @@ function MessageContainer() {
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
-        <button className="bg-red-600 text-white rounded-r-full px-4 py-2">
-          Enter
+        <button className="bg-red-600 text-white rounded-r-full px-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-send mr-1"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M10 14l11 -11"></path>
+            <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"></path>
+          </svg>
         </button>
       </form>
     </div>
