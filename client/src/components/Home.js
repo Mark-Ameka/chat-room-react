@@ -27,8 +27,10 @@ function Home() {
         <div className="md:block hidden col-span-1">
           <RoomContainer />
         </div>
-        <div className="col-span-2">{selectedRoom && <MessageContainer />}</div>
-        <div className="md:grid hidden grid-rows-6 h-screen">
+        <div className="lg:col-span-2 col-span-3">
+          {selectedRoom && <MessageContainer />}
+        </div>
+        <div className="lg:grid hidden grid-rows-6 h-screen">
           <div className="col-span-1">
             <ProfileContainer />
           </div>
