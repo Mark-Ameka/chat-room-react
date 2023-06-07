@@ -63,7 +63,7 @@ function MessageContainer() {
                                   </span>
                                 </div>
                                 <div
-                                  className="bg-red-600 text-white rounded-2xl rounded-br-sm p-2 text-end ml-auto
+                                  className="max-w-md bg-red-600 text-white rounded-2xl rounded-br-sm p-3 text-start ml-auto
                                   relative 
                                   before:content-[attr(data-tip)] 
                                   before:absolute 
@@ -79,7 +79,7 @@ function MessageContainer() {
                                 "
                                   data-tip={formattedDate_time}
                                 >
-                                  <p>{x.message}</p>
+                                  <p className="break-words">{x.message}</p>
                                 </div>
                               </div>
                               <img
@@ -177,6 +177,7 @@ function MessageContainer() {
         onSubmit={handleSubmit}
       >
         <input
+          maxLength={1500}
           type="text"
           placeholder="Aa"
           className="flex-grow border border-gray-300 rounded-l-full px-4 py-2 focus:outline-none focus:border-gray-400"
