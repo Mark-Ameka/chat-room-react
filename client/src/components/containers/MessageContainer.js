@@ -63,7 +63,7 @@ function MessageContainer() {
                                   </span>
                                 </div>
                                 <div
-                                  className="max-w-md bg-red-600 text-white rounded-2xl rounded-br-sm p-3 text-start ml-auto
+                                  className="xl:max-w-md max-w-xs bg-red-600 text-white rounded-2xl rounded-br-sm p-3 text-start ml-auto
                                   relative 
                                   before:content-[attr(data-tip)] 
                                   before:absolute 
