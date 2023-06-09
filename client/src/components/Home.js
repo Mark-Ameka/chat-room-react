@@ -30,7 +30,7 @@ function Home() {
         <div className="lg:col-span-2 col-span-3">
           {selectedRoom && <MessageContainer />}
         </div>
-        <div className="lg:grid hidden grid-rows-6 h-screen">
+        <div className="lg:grid hidden grid-rows-6 h-screen px-6 py-6">
           <div className="col-span-1">
             <ProfileContainer />
           </div>

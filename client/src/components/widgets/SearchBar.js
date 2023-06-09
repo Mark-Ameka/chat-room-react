@@ -19,9 +19,9 @@ function SearchBar() {
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
       <input
-        type="text"
+        type="search"
         placeholder="Search"
-        className="w-full text-sm pl-10 py-3 pr-4 mb-2 rounded-full focus:outline-none bg-slate-100"
+        className="w-full text-sm pl-10 py-3 pr-2 mb-2 rounded-full focus:outline-none bg-slate-100"
       />
     </div>
   );
